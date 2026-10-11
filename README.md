@@ -1,19 +1,24 @@
-# DRAGON KINGDOM TYCOON — StudioFix
+# DRAGON KINGDOM TYCOON — Storybook build
 
-รุ่นแก้ไขหน้าค้างที่ “กำลังเชื่อมต่ออาณาจักร…”
+รุ่นปรับภาพและ UI: แถบไม้ ช่องทรัพยากรสีครีม เหรียญเลเวล/XP ปุ่มหินกลม และหน้าต่างกระดาษ พร้อมเมนู “อาณาจักร” พับได้ เกาะมีหน้าผาน้ำตาล ขอบหญ้า ต้นไม้มีราก อาคารไม้และถิ่นอาศัยสีตามธาตุ มังกรมีดวงตา แก้มและปีกละเอียดขึ้น กล้องปรับระยะตามขนาดจอ
 
-- `downloads/DragonKingdomTycoon-StudioFix.rbxl`: ไฟล์เปิดใน Roblox Studio รุ่นแก้ไข
-- `downloads/DragonKingdomTycoon-StudioFix.zip`: source, assets, คู่มือ, tests และไฟล์เกมทั้งชุด
-- `downloads/SHA256SUMS.txt`: SHA256 ของไฟล์ดาวน์โหลด
+## ดาวน์โหลด
 
-เปิดไฟล์บน GitHub แล้วกด **Download raw file** เพื่อบันทึกลงเครื่อง จากนั้น Stop การทดสอบเดิม และ File → Open from File เพื่อเปิดไฟล์ StudioFix ก่อนกด Play
+- [ไฟล์ Roblox Studio รุ่นใหม่](downloads/DragonKingdomTycoon-Storybook.rbxl)
+- [ZIP source, assets, place, คู่มือและผลตรวจ](downloads/DragonKingdomTycoon-Storybook.zip)
+- [SHA256 ของไฟล์ดาวน์โหลด](downloads/SHA256SUMS.txt)
 
-รุ่นพัฒนานี้เปิด `StudioMemoryMode = true` เฉพาะใน Studio จึงทดสอบ place ที่ยังไม่ Publish ได้ทันที HUD แจ้งว่าข้อมูลเป็นการทดสอบชั่วคราว และปิด Play แล้วข้อมูลจะหาย Published servers ใช้ DataStore จริงเสมอ หากทดสอบ save จริงใน Studio ให้ตั้ง flag false และทำตาม docs/STUDIO_SETUP.md ใน ZIP
+หน้าไฟล์บน GitHub ใช้ปุ่ม **Download raw file** หากเบราว์เซอร์เปิดตัวอย่างแทนการดาวน์โหลด
 
-แก้การเปิด DataStore ก่อน server พร้อมรับคำขอ, ป้องกัน bootstrap/world errors ที่ทำให้ client ค้าง, จำกัดเวลารอและคำขอที่ยังไม่ตอบ, ฟื้นตัวเมื่อ snapshot มาช้า, เว้น HUD จากปุ่ม Roblox ด้านบน และเปลี่ยนไอคอนที่เป็นตัวอักษรไม่รองรับเป็นรูปทรงเรขาคณิต
+## เปิดทดสอบ
 
-ผ่าน 75 portable tests: domain 34, security 10, persistence adapter 17, client connection 14 รวมทั้ง UI/world stand-in checks และ Rojo build ที่มี source ครบ 32 ไฟล์ สิ่งเหล่านี้เป็นการทดสอบบนคลาวด์; ยังไม่ได้ทดสอบ Studio rendering, live DataStore, multiplayer และ FPS จริง
+1. หยุด Play และเปิดไฟล์ `DragonKingdomTycoon-Storybook.rbxl` ด้วย **File → Open from File**
+2. กด Play; เริ่มด้วยมังกรสามตัวและถิ่นอาศัยสามแห่ง
+3. ปุ่ม **อาณาจักร** เปิดคลัง โรงฟัก ผสมพันธุ์ ประลอง รางวัลและระบบอื่น ๆ ส่วนภารกิจ/สร้าง/ตลาด/ตั้งค่าเข้าถึงจากปุ่มริมจอ
+4. รุ่นนี้ใช้ข้อมูลชั่วคราวเฉพาะใน Studio จึงทดสอบ place ที่ยังไม่ Publish ได้ ข้อมูลหายเมื่อหยุด Play; เซิร์ฟเวอร์ที่เผยแพร่ใช้ DataStore เสมอ วิธีทดสอบ save จริงอยู่ใน `docs/STUDIO_SETUP.md` ภายใน ZIP
 
-ถ้าต้องการดูข้อความผิดพลาด เปิด Window (หน้าต่าง) → Output ใน Studio รุ่นใหม่; รุ่นเก่าใช้ View → Output
+การตรวจคลาวด์ผ่าน 85 ข้อ (กฎเกม/ความปลอดภัย/การบันทึกจำลอง 61, การเชื่อมต่อ 14, กล้อง 10) พร้อม compile ทุก source, UI/world mocks, assets และ Rojo build ตรวจ source ที่ฝังใน place ครบ
 
-Artwork/audio ต้นฉบับยังต้องอัปโหลดและผูก asset IDs โดยเจ้าของ โมเดลมังกร procedural เป็นงานพัฒนาที่รอ custom meshes/rigged clips ขั้นสุดท้าย ที่มา assets อยู่ใน art/LICENSE.md ใน ZIP ไม่ได้ประกาศ source เป็น open source
+ภาพ `build/preview/DragonKingdomTycoon-Storybook.png` ใน ZIP เป็น offline render จาก geometry/UI source จริง พร้อม metadata/SHA256; Blender/Pillow จำลองแสง วัสดุและฟอนต์ จึงไม่ใช่ screenshot จาก Roblox Studio
+
+นี่เป็น development build ที่มีระบบเกมจริง โมเดลยังเป็น procedural art; PNG/audio ต้นฉบับต้องอัปโหลดและผูก asset IDs สำหรับใช้งาน imported assets และ custom skinned meshes/rigged clips ขั้นสุดท้ายยังต้องทำต่อ การเรนเดอร์จริง การเล่นบนอุปกรณ์ multiplayer และ live DataStore ยังไม่ได้ทดสอบใน Studio จากคลาวด์ Linux นี้
